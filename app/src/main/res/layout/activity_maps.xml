@@ -10,26 +10,27 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Patient Location"
-        android:gravity="center"
         android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="Patient Location"
         android:textColor="@color/black"
         android:textStyle="bold"
         map:layout_constraintEnd_toEndOf="parent"
-        map:layout_constraintTop_toTopOf="parent"/>
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginTop="40dp">
-    <fragment
-        android:id="@+id/map"
+        map:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MapsActivity"
-        android:name="com.google.android.gms.maps.SupportMapFragment"/>
+        android:layout_marginTop="40dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <fragment
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".MapsActivity" />
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

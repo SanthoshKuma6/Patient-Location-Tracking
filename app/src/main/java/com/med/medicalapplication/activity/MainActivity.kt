@@ -1,15 +1,11 @@
 package com.med.medicalapplication.activity
 
 import android.Manifest
-import android.app.Dialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -20,7 +16,6 @@ import androidx.lifecycle.lifecycleScope
 import com.med.medicalapplication.R
 import com.med.medicalapplication.activity.adapter.PatientAdapter
 import com.med.medicalapplication.databinding.ActivityMainBinding
-import com.med.medicalapplication.databinding.AlertPopumBinding
 import com.med.medicalapplication.location.Constant
 import com.med.medicalapplication.location.Constant.ACTION_STOP_FUSED_SERVICE
 import com.med.medicalapplication.location.FusedLocationService
@@ -97,11 +92,11 @@ class MainActivity : AppCompatActivity() {
                     patientAge.text.toString(),
                     patientGender.text.toString()
                 )
-                lifecycleScope.launchWhenCreated {
+                lifecycleScope.launch {
                     viewModel.insertLocation(
                         LocationTable(
-                            latitude.toString(),
-                            longitude.toString()
+                            latitude,
+                            longitude
                         )
                     )
 
@@ -116,7 +111,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun sendDialogDataToActivity(name: String, id: String, age: String, gender: String) {
-        lifecycleScope.launchWhenCreated {
+        lifecycleScope.launch {
             viewModel.insert(
                 PatientModelClass(
                     name, id, age, gender
@@ -160,7 +155,8 @@ class MainActivity : AppCompatActivity() {
 //    }
 
     private fun viewData() {
-        lifecycleScope.launchWhenCreated {
+
+        lifecycleScope.launch {
             viewModel.getList().collect {
                 mainActivity.apply {
                     recyclerView.adapter = patientAdapter
@@ -169,6 +165,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+
 
 
     private fun getLocation() {

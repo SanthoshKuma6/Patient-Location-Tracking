@@ -4,7 +4,6 @@ import android.location.Address
 import android.location.Geocoder
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -20,10 +19,8 @@ import com.med.medicalapplication.databinding.ActivityMapsBinding
 import com.med.medicalapplication.mvvm.DataBase
 import com.med.medicalapplication.mvvm.LocationTable
 import com.med.medicalapplication.mvvm.PatientFactory
-import com.med.medicalapplication.mvvm.PatientModelClass
 import com.med.medicalapplication.mvvm.PatientRepository
 import com.med.medicalapplication.mvvm.PatientViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.util.Locale
 
@@ -54,9 +51,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
-        lifecycleScope.launchWhenCreated {
+        lifecycleScope.launch {
             viewModel.getLocation().collect {
-                mMap?.let { it1 -> getHistory(it1, it) }
+                getHistory(mMap, it)
             }
         }
 
@@ -65,30 +62,26 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun getHistory(googleMap: GoogleMap, place: List<LocationTable>) {
         for (i in place) {
             mMap = googleMap
-            mMap!!.isIndoorEnabled = true
+            mMap.isIndoorEnabled = true
 
             // Add a marker in Sydney and move the camera
             try {
-                val sydney = i.lat?.let { i.lan?.let { it1 -> LatLng(it.toDouble(), it1.toDouble()) } }
-                sydney?.let { CameraUpdateFactory.newLatLng(it) }?.let { mMap!!.moveCamera(it) }
+                val sydney = LatLng(i.lat.toDouble(), i.lan.toDouble())
+                sydney.let { CameraUpdateFactory.newLatLng(it) }.let { mMap.moveCamera(it) }
                 val numMarkersInRainbow = 12
                 for (j in 0 until numMarkersInRainbow) {
-                    i.lat?.let {
-                        i.lan?.let { it1 ->
-                            LatLng(
-                                it.toDouble(),
-                                it1.toDouble()
-                            )
-                        }
-                    }?.let {
+                    LatLng(
+                        i.lat.toDouble(),
+                        i.lan.toDouble()
+                    ).let {
                         MarkerOptions()
                             .position(
                                 it
                             )
                             .title("Marker World")
                             .icon(BitmapDescriptorFactory.defaultMarker((j * 360 / numMarkersInRainbow).toFloat()))
-                    }?.let {
-                        mMap!!.addMarker(
+                    }.let {
+                        mMap.addMarker(
                             it
                         )
                     }
@@ -105,8 +98,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         // Add a marker in Sydney and move the camera
         val sydney = LatLng(lat.toDouble(), lan.toDouble())
-        mMap!!.addMarker(MarkerOptions().position(sydney).title(address))
-        mMap!!.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        mMap.addMarker(MarkerOptions().position(sydney).title(address))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
 
     }
 
