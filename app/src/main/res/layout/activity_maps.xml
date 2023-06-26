@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:text="Patient Location"
+        android:text="@string/patient_location"
         android:textColor="@color/black"
         android:textStyle="bold"
         map:layout_constraintEnd_toEndOf="parent"

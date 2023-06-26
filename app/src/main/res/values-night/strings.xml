@@ -1,6 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Bright Bridge Infotech</string>
-    <string name="title_activity_maps">MapsActivity</string>
     <string name="patient_location">Patient Location</string>
     <string name="patient_details">Patient Details</string>
     <string name="enter_patient_name">Enter patient name</string>

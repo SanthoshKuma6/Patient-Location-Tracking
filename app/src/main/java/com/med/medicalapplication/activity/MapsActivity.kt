@@ -102,7 +102,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
 
     }
-
+    @Suppress("DEPRECATION")
     private fun onLocationChanged() {
         try {
             val geocoder = Geocoder(this, Locale.getDefault())

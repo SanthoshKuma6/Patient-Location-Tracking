@@ -43,12 +43,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/id"
-                android:hint="patient_name"/>
+                android:hint="@string/patient_name_details"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Patient Name:"
+                android:text="@string/patient_name"
                 android:id="@+id/viewName"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
@@ -67,7 +67,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Patient Id:"
+                android:text="@string/patient_id"
                 android:layout_marginTop="10dp"
                 android:id="@+id/viewId"
                 app:layout_constraintStart_toStartOf="parent"
@@ -83,11 +83,11 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/id"
-                android:hint="age"/>
+                android:hint="@string/age"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Patient Age:"
+                android:text="@string/patient_age"
                 android:id="@+id/viewAge"
                 android:layout_marginTop="10dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -103,11 +103,11 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/age"
-                android:hint="gender"/>
+                android:hint="@string/gender"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Patient Gender:"
+                android:text="@string/patient_gender"
                 android:layout_marginTop="10dp"
                 android:id="@+id/viewGender"
                 app:layout_constraintStart_toStartOf="parent"
