@@ -59,6 +59,8 @@ class MainActivity : AppCompatActivity() {
         mainActivity.mapView.setOnClickListener {
             val intent = Intent(this@MainActivity, MapsActivity::class.java)
             startActivity(intent)
+
+
         }
     }
 
