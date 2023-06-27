@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.med.medicalapplication.databinding.PatientAdapterBinding
-import com.med.medicalapplication.mvvm.PatientModelClass
+import com.med.medicalapplication.mvvm.model.PatientModelClass
 
 class PatientAdapter : RecyclerView.Adapter<PatientAdapter.MainViewHolder>() {
 

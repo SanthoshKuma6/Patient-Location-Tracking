@@ -17,7 +17,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.med.medicalapplication.R
 import com.med.medicalapplication.databinding.ActivityMapsBinding
 import com.med.medicalapplication.mvvm.DataBase
-import com.med.medicalapplication.mvvm.LocationTable
+import com.med.medicalapplication.mvvm.model.LocationTable
 import com.med.medicalapplication.mvvm.PatientFactory
 import com.med.medicalapplication.mvvm.PatientRepository
 import com.med.medicalapplication.mvvm.PatientViewModel

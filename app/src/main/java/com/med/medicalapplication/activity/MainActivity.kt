@@ -22,9 +22,9 @@ import com.med.medicalapplication.location.FusedLocationService
 import com.med.medicalapplication.location.displayLocationSettingsRequest
 import com.med.medicalapplication.location.getLocationStatus
 import com.med.medicalapplication.mvvm.DataBase
-import com.med.medicalapplication.mvvm.LocationTable
+import com.med.medicalapplication.mvvm.model.LocationTable
 import com.med.medicalapplication.mvvm.PatientFactory
-import com.med.medicalapplication.mvvm.PatientModelClass
+import com.med.medicalapplication.mvvm.model.PatientModelClass
 import com.med.medicalapplication.mvvm.PatientRepository
 import com.med.medicalapplication.mvvm.PatientViewModel
 import kotlinx.coroutines.launch

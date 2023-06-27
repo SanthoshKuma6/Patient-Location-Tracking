@@ -1,4 +1,4 @@
-package com.med.medicalapplication.mvvm
+package com.med.medicalapplication.mvvm.model
 
 import android.os.Parcelable
 import androidx.room.Entity

@@ -3,6 +3,8 @@ package com.med.medicalapplication.mvvm
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import com.med.medicalapplication.mvvm.model.LocationTable
+import com.med.medicalapplication.mvvm.model.PatientModelClass
 import kotlinx.coroutines.flow.Flow
 
 @Dao

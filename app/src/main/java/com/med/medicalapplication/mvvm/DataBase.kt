@@ -4,8 +4,11 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.med.medicalapplication.mvvm.model.LocationTable
+import com.med.medicalapplication.mvvm.model.PatientModelClass
+
 @Database(
-    entities = [PatientModelClass::class,LocationTable::class],
+    entities = [PatientModelClass::class, LocationTable::class],
     version = 3,
     exportSchema = false
 )
