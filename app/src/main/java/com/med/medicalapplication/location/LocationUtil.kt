@@ -27,6 +27,7 @@ fun getLocationStatus(context: Context): Boolean {
         )
     }
 }
+@Suppress("Deprecate")
 fun displayLocationSettingsRequest(context: Context, activity: Activity) {
     val googleApiClient =
         GoogleApiClient.Builder(context).addApi(LocationServices.API).build()
