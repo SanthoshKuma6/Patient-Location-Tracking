@@ -4,9 +4,9 @@ import android.Manifest
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -58,16 +58,18 @@ class MainActivity : AppCompatActivity() {
 
         }
         mainActivity.mapView.setOnClickListener {
-            val intent = Intent(this@MainActivity, MapsActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this@MainActivity, MapsActivity::class.java)
+//            startActivity(intent)
 
+            val shareIntent = Intent(Intent.ACTION_SEND)
+            shareIntent.type = "text/plain"
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Insert Subject here")
+            shareIntent.putExtra(Intent.EXTRA_TEXT, "77.05")
+            shareIntent.putExtra(Intent.EXTRA_TEXT,"11.05")
+            startActivity(Intent.createChooser(shareIntent, "Share via"))
 
         }
-
     }
-
-
-
     private fun patientDetails() {
         val builder = AlertDialog.Builder(this)
         val customLayout: View = layoutInflater.inflate(R.layout.alert_popum, null)
@@ -79,16 +81,12 @@ class MainActivity : AppCompatActivity() {
             val patientGender = customLayout.findViewById<EditText>(R.id.gender)
             if (patientName.editableText.toString().isEmpty()) {
                 Toast.makeText(this@MainActivity, "enter your name", Toast.LENGTH_SHORT).show()
-
             } else if (patientAge.editableText.toString().isEmpty()) {
                 Toast.makeText(this@MainActivity, "enter your age", Toast.LENGTH_SHORT).show()
-
             } else if (patientId.editableText.toString().isEmpty()) {
                 Toast.makeText(this@MainActivity, "enter your id", Toast.LENGTH_SHORT).show()
-
             } else if (patientGender.editableText.toString().isEmpty()) {
                 Toast.makeText(this@MainActivity, "enter your Gender", Toast.LENGTH_SHORT).show()
-
             } else {
                 sendDialogDataToActivity(
                     patientName.text.toString(),
@@ -105,6 +103,7 @@ class MainActivity : AppCompatActivity() {
                     )
 
                 }
+                Log.d("TAG", "patientDetails: $latitude")
 
             }
 
