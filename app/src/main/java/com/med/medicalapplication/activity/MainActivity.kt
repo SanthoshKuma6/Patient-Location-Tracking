@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
@@ -70,24 +71,78 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
-    private fun patientDetails() {
-        val builder = AlertDialog.Builder(this)
-        val customLayout: View = layoutInflater.inflate(R.layout.alert_popum, null)
-        builder.setView(customLayout)
-        builder.setPositiveButton("Submit") { _: DialogInterface?, _: Int ->
-            val patientName = customLayout.findViewById<EditText>(R.id.name)
-            val patientId = customLayout.findViewById<EditText>(R.id.id)
-            val patientAge = customLayout.findViewById<EditText>(R.id.age)
-            val patientGender = customLayout.findViewById<EditText>(R.id.gender)
-            if (patientName.editableText.toString().isEmpty()) {
-                Toast.makeText(this@MainActivity, "enter your name", Toast.LENGTH_SHORT).show()
-            } else if (patientAge.editableText.toString().isEmpty()) {
-                Toast.makeText(this@MainActivity, "enter your age", Toast.LENGTH_SHORT).show()
-            } else if (patientId.editableText.toString().isEmpty()) {
-                Toast.makeText(this@MainActivity, "enter your id", Toast.LENGTH_SHORT).show()
-            } else if (patientGender.editableText.toString().isEmpty()) {
-                Toast.makeText(this@MainActivity, "enter your Gender", Toast.LENGTH_SHORT).show()
-            } else {
+//    private fun patientDetails() {
+//        val builder = AlertDialog.Builder(this)
+//        val customLayout: View = layoutInflater.inflate(R.layout.alert_popum, null)
+//        builder.setView(customLayout)
+//        builder.setPositiveButton("Submit") { _: DialogInterface?, _: Int ->
+//            val patientName = customLayout.findViewById<EditText>(R.id.name)
+//            val patientId = customLayout.findViewById<EditText>(R.id.id)
+//            val patientAge = customLayout.findViewById<EditText>(R.id.age)
+//            val patientGender = customLayout.findViewById<EditText>(R.id.gender)
+//            if (patientName.editableText.toString().isEmpty()) {
+//                Toast.makeText(this@MainActivity, "enter your name", Toast.LENGTH_SHORT).show()
+//            } else if (patientAge.editableText.toString().isEmpty()) {
+//                Toast.makeText(this@MainActivity, "enter your age", Toast.LENGTH_SHORT).show()
+//            } else if (patientId.editableText.toString().isEmpty()) {
+//                Toast.makeText(this@MainActivity, "enter your id", Toast.LENGTH_SHORT).show()
+//            } else if (patientGender.editableText.toString().isEmpty()) {
+//                Toast.makeText(this@MainActivity, "enter your Gender", Toast.LENGTH_SHORT).show()
+//            } else {
+//                sendDialogDataToActivity(
+//                    patientName.text.toString(),
+//                    patientId.text.toString(),
+//                    patientAge.text.toString(),
+//                    patientGender.text.toString()
+//                )
+//                lifecycleScope.launch {
+//                    viewModel.insertLocation(
+//                        LocationTable(
+//                            latitude,
+//                            longitude
+//                        )
+//                    )
+//
+//                }
+//                Log.d("TAG", "patientDetails: $latitude")
+//
+//            }
+//
+//        }
+//
+//        val dialog = builder.create()
+//        dialog.show()
+//    }
+private fun patientDetails() {
+    val builder = AlertDialog.Builder(this)
+    val customLayout: View = layoutInflater.inflate(R.layout.alert_popum, null)
+    builder.setView(customLayout)
+
+    val dialog = builder.create()
+
+    val submitButton = customLayout.findViewById<Button>(R.id.submitButton)
+    val cancelButton = customLayout.findViewById<Button>(R.id.cancelButton)
+
+    submitButton.setOnClickListener {
+        val patientName = customLayout.findViewById<EditText>(R.id.name)
+        val patientId = customLayout.findViewById<EditText>(R.id.id)
+        val patientAge = customLayout.findViewById<EditText>(R.id.age)
+        val patientGender = customLayout.findViewById<EditText>(R.id.gender)
+
+        when {
+            patientName.text.toString().isEmpty() -> {
+                Toast.makeText(this@MainActivity, "Enter your name", Toast.LENGTH_SHORT).show()
+            }
+            patientAge.text.toString().isEmpty() -> {
+                Toast.makeText(this@MainActivity, "Enter your age", Toast.LENGTH_SHORT).show()
+            }
+            patientId.text.toString().isEmpty() -> {
+                Toast.makeText(this@MainActivity, "Enter your ID", Toast.LENGTH_SHORT).show()
+            }
+            patientGender.text.toString().isEmpty() -> {
+                Toast.makeText(this@MainActivity, "Enter your Gender", Toast.LENGTH_SHORT).show()
+            }
+            else -> {
                 sendDialogDataToActivity(
                     patientName.text.toString(),
                     patientId.text.toString(),
@@ -101,17 +156,19 @@ class MainActivity : AppCompatActivity() {
                             longitude
                         )
                     )
-
                 }
                 Log.d("TAG", "patientDetails: $latitude")
-
+                dialog.dismiss() // Close dialog only when input is valid
             }
-
         }
-
-        val dialog = builder.create()
-        dialog.show()
     }
+
+    cancelButton.setOnClickListener {
+        dialog.dismiss() // Dismiss the dialog when the cancel button is clicked
+    }
+
+    dialog.show()
+}
 
     private fun sendDialogDataToActivity(name: String, id: String, age: String, gender: String) {
         lifecycleScope.launch {
